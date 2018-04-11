@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>dk.cphbusiness</groupId>
-    <artifactId>CA3</artifactId>
+    <artifactId>jwtBackend</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>CA3</name>
+    <name>jwtBackend</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
