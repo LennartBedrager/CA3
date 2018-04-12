@@ -22,7 +22,7 @@ export default class LoggedIn extends Component {
         <h2>Data Received from server</h2>
         <h3>{this.state.dataFromServer}</h3>
         </div>
-        <Route path="/" render={() => <Competitions />}/>
+        <Route path="/" render={({match}) => <Competitions match={match} />}/>
         </div>
       )
     }

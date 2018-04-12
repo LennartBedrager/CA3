@@ -1,4 +1,7 @@
 import React, { Component } from "react"
+import {
+  NavLink
+} from 'react-router-dom';
 import facade from "./FetchFacades/LoginFacade";
 import LogIn from './Login/LogIn';
 import LoggedIn from './Login/LoggedIn';
@@ -31,7 +34,7 @@ class App extends Component {
               <LoggedIn />
               <div className="container text-center">
               <div className="col-sm-4 col-sm-offset-4">
-              <button className="btn btn-primary" onClick={this.logout}>Logout</button>
+              <NavLink className="btn btn-primary" exact to="/" onClick={this.logout}>Logout</NavLink>
               </div>
               </div>
             </div>)}
