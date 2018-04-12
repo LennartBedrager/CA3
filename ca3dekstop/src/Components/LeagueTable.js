@@ -2,19 +2,19 @@ import React, {Component} from 'react';
 import CompetitionFacade from '../FetchFacades/CompetitionFacade';
 import {NavLink} from 'react-router-dom';
 
-export default class Teams extends Component {
+export default class LeagueTable extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            teams: [],
+            leaguetable: [],
             isTrue: false
         }
     }
 
-    componentDidMount() {
-        CompetitionFacade.fetchTeamsFromCompetition(this.props.match)
+    async componentDidMount() {
+        CompetitionFacade.fetchLeagueTablesFromCompetition(this.props.match)
         .then(res => this.setState({
-            teams: res.teams.map(team => <tr key={team.name} className="active"><td><img src={team.crestUrl} alt="..." className="img-thumbnail" width="100" height="100"/></td><td>{team.name}</td><td>{team.shortName}</td></tr>)
+            leaguetable: res.standing.map(team => <tr key={team.position} className="active"><td><img src={team.crestURI} alt="..." className="img-thumbnail" width="100" height="100"/></td><td>{team.position}</td><td>{team.teamName}</td><td>{team.points}</td><td>{team.playedGames}</td><td>{team.wins}</td><td>{team.draws}</td><td>{team.losses}</td></tr>)
         }))
     }
 
@@ -30,15 +30,15 @@ export default class Teams extends Component {
             {!this.state.isTrue ?  (
             <div>
                 <div className="container text-center">
-                <h4>Teams in this league</h4>
+                <h4>Rankings</h4>
                 <NavLink activeClassName="active" onClick={this.changeToggle} exact to = "/" >Close</NavLink>
                 </div>
                 <table className="table">
                 <thead>
-                    <tr><th>Crest</th><th>Team Name</th><th>Short Name</th></tr>
+                    <tr><th>Crest</th><th>Position</th><th>Team Name</th><th>Points</th><th>Played Games</th><th>Wins</th><th>Draws</th><th>Loses</th></tr>
                 </thead>
                 <tbody>
-                    {this.state.teams}
+                    {this.state.leaguetable}
                 </tbody>
                 </table>
             </div>

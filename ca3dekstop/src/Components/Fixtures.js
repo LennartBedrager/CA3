@@ -2,19 +2,20 @@ import React, {Component} from 'react';
 import CompetitionFacade from '../FetchFacades/CompetitionFacade';
 import {NavLink} from 'react-router-dom';
 
-export default class Teams extends Component {
+export default class Fixtures extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            teams: [],
+            fixtures: [],
             isTrue: false
         }
     }
 
     componentDidMount() {
-        CompetitionFacade.fetchTeamsFromCompetition(this.props.match)
+        var data = 1;
+        CompetitionFacade.fetchFixturesFromCompetition(this.props.match)
         .then(res => this.setState({
-            teams: res.teams.map(team => <tr key={team.name} className="active"><td><img src={team.crestUrl} alt="..." className="img-thumbnail" width="100" height="100"/></td><td>{team.name}</td><td>{team.shortName}</td></tr>)
+            fixtures: res.fixtures.map(fixture => <tr key={data++} className="active"><td>{fixture.matchday}</td><td>{fixture.homeTeamName}</td><td>{fixture.awayTeamName}</td><td>{fixture.result.goalsHomeTeam} - {fixture.result.goalsAwayTeam}</td></tr>)
         }))
     }
 
@@ -30,15 +31,15 @@ export default class Teams extends Component {
             {!this.state.isTrue ?  (
             <div>
                 <div className="container text-center">
-                <h4>Teams in this league</h4>
+                <h4>Fixtures in this league</h4>
                 <NavLink activeClassName="active" onClick={this.changeToggle} exact to = "/" >Close</NavLink>
                 </div>
                 <table className="table">
                 <thead>
-                    <tr><th>Crest</th><th>Team Name</th><th>Short Name</th></tr>
+                    <tr><th>MatchDay</th><th>Home Team</th><th>Away Team</th><th>Match Result</th></tr>
                 </thead>
                 <tbody>
-                    {this.state.teams}
+                    {this.state.fixtures}
                 </tbody>
                 </table>
             </div>
