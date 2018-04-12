@@ -20,7 +20,7 @@ export default class LogIn extends Component {
         </div>
         <br/>
           <form onSubmit={this.login} onChange={this.onChange} >
-          <div className="col-sm-4 col-sm-offset-4">
+          <div >
           <div className="form-group">
           <label htmlFor="username">Username</label>
           <input type="text" className="form-control" placeholder="Enter username" id="username" />

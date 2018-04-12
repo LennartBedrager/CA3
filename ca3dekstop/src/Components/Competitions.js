@@ -61,19 +61,20 @@ export default class Competitions extends Component {
             <div>
               <table className="table">
                 <thead>
-                  <tr><th>ID</th><th>Caption</th><th>League</th><th>Year</th><th>NumberOfTeams</th><th>NumberOfGames</th><th>lastUpdated</th><td>Teams</td></tr>
+                  <tr><th>ID</th><th>Caption</th><th>League</th><th>Year</th><th>NumberOfTeams</th><th>NumberOfGames</th><th>lastUpdated</th><td>Teams</td><td>Fixtures</td><td>Rankings</td></tr>
                 </thead>
                 <tbody>
                 <tr className="info"><td>{c.id}</td><td>{c.caption}</td><td>{c.league}</td><td>{c.year}</td><td>{c.numberOfTeams}</td><td>{c.numberOfGames}</td><td>{c.lastUpdated}</td><td><NavLink exact to={`${this.props.match.url}teams/${c.id}`}>Show Teams</NavLink></td><td><NavLink exact to={`${this.props.match.url}fixtures/${c.id}`}>Show Fixtures</NavLink></td><td><NavLink exact to={`${this.props.match.url}leaguetable/${c.id}`}>Show rankings</NavLink></td></tr>
                 </tbody>
               </table>
+              <div className="container text-center">
+              <NavLink className="btn btn-primary" onClick={this.getBack} exact to={`${this.props.match.url}`}>Find another Competition</NavLink>
+              </div>
               <Switch>
               <Route path="/teams/:id" render={({match}) => <Teams match={match.params.id} />}/>
               <Route path="/fixtures/:id" render={({match}) => <Fixtures match={match.params.id} />}/>
               <Route path="/leaguetable/:id" render={({match}) => <LeagueTable match={match.params.id} />}/>
               </Switch>
-              <br/>
-              <NavLink onClick={this.getBack} exact to={`${this.props.match.url}`}>Find another Competition</NavLink>
             </div>)}
           </div>
         )

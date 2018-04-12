@@ -30,9 +30,12 @@ export default class LeagueTable extends Component {
             {!this.state.isTrue ?  (
             <div>
                 <div className="container text-center">
-                <h4>Rankings</h4>
-                <NavLink activeClassName="active" onClick={this.changeToggle} exact to = "/" >Close</NavLink>
+                <div className="page-header">
+                <h2>Rankings</h2>
                 </div>
+                <NavLink className="btn btn-primary" onClick={this.changeToggle} exact to = "/" >Close Table</NavLink>
+                </div>
+                <br/>
                 <table className="table">
                 <thead>
                     <tr><th>Crest</th><th>Position</th><th>Team Name</th><th>Points</th><th>Played Games</th><th>Wins</th><th>Draws</th><th>Loses</th></tr>

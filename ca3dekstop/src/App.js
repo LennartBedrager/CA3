@@ -24,19 +24,14 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container top-buffer">
       <div className="jumbotron vertical-center">
       <div className="container text-center">
       <h1>Welcome to our Website!</h1>
       </div>
         {!this.state.loggedIn ? (<LogIn login={this.login}/>) :
           ( <div>
-              <LoggedIn />
-              <div className="container text-center">
-              <div className="col-sm-4 col-sm-offset-4">
-              <NavLink className="btn btn-primary" exact to="/" onClick={this.logout}>Logout</NavLink>
-              </div>
-              </div>
+              <LoggedIn logout={this.logout}/>
             </div>)}
         </div>
       </div>

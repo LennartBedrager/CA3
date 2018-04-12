@@ -31,9 +31,12 @@ export default class Fixtures extends Component {
             {!this.state.isTrue ?  (
             <div>
                 <div className="container text-center">
-                <h4>Fixtures in this league</h4>
-                <NavLink activeClassName="active" onClick={this.changeToggle} exact to = "/" >Close</NavLink>
+                <div className="page-header">
+                <h2>Fixtures in this league</h2>
                 </div>
+                <NavLink className="btn btn-primary" onClick={this.changeToggle} exact to = "/" >Close Table</NavLink>
+                </div>
+                <br/>
                 <table className="table">
                 <thead>
                     <tr><th>MatchDay</th><th>Home Team</th><th>Away Team</th><th>Match Result</th></tr>

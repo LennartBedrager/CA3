@@ -30,9 +30,12 @@ export default class Teams extends Component {
             {!this.state.isTrue ?  (
             <div>
                 <div className="container text-center">
-                <h4>Teams in this league</h4>
-                <NavLink activeClassName="active" onClick={this.changeToggle} exact to = "/" >Close</NavLink>
+                <div className="page-header">
+                <h2>Teams in this league</h2>
                 </div>
+                <NavLink className="btn btn-primary" onClick={this.changeToggle} exact to = "/" >Close Table</NavLink>
+                </div>
+                <br/>
                 <table className="table">
                 <thead>
                     <tr><th>Crest</th><th>Team Name</th><th>Short Name</th></tr>
