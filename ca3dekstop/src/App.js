@@ -21,13 +21,21 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
+      <div className="jumbotron vertical-center">
+      <div className="container text-center">
+      <h1>Welcome to our Website!</h1>
+      </div>
         {!this.state.loggedIn ? (<LogIn login={this.login}/>) :
           ( <div>
               <LoggedIn />
-              <br/><br/>
-              <button onClick={this.logout}>Logout</button>
+              <div className="container text-center">
+              <div className="col-sm-4 col-sm-offset-4">
+              <button className="btn btn-primary" onClick={this.logout}>Logout</button>
+              </div>
+              </div>
             </div>)}
+        </div>
       </div>
     )
   }

@@ -14,7 +14,7 @@ export default class Teams extends Component {
     componentDidMount() {
         CompetitionFacade.fetchTeamsFromCompetition(this.props.match)
         .then(res => this.setState({
-            teams: res.teams.map(team => <tr key={team.name}><td>{team.name}</td><td>{team.shortName}</td><td>{team.squadMarketValue}</td><td>{team.crestUrl}</td></tr>)
+            teams: res.teams.map(team => <tr key={team.name} className="active"><td><img src={team.crestUrl} alt="..." className="img-thumbnail" width="100" height="100"/></td><td>{team.name}</td><td>{team.shortName}</td></tr>)
         }))
     }
 
@@ -25,20 +25,24 @@ export default class Teams extends Component {
     }
 
     render () {
-        
         return (
             <div>
             {!this.state.isTrue ?  (
             <div>
-                <table>
+                <div className="container text-center">
+                <h4>Teams in this league</h4>
+                </div>
+                <table className="table">
                 <thead>
-                    <tr><th>Team Name</th><th>Short Name</th><th>squadMarketValue</th><th>crestUrl</th></tr>
+                    <tr><th>Crest</th><th>Team Name</th><th>Short Name</th></tr>
                 </thead>
                 <tbody>
                     {this.state.teams}
                 </tbody>
                 </table>
-                <NavLink onClick={this.changeToggle} exact to = "/" >Close</NavLink>
+                <div className="container text-center">
+                <NavLink activeClassName="active" onClick={this.changeToggle} exact to = "/" >Close</NavLink>
+                </div>
             </div>
           ) : ( <div></div>)}
             </div>

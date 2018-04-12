@@ -25,8 +25,7 @@ export default class Competitions extends Component {
     
     getBack = () => {
       this.setState ({
-        isFalse: false,
-        teamsToggle: false,
+        isFalse: false
       })
     }
   
@@ -45,23 +44,26 @@ export default class Competitions extends Component {
         let c = this.state.competition
         return (
             
-          <div>
+          <div className="container">
           {!this.state.isFalse ?  (
+            <div className="col-sm-4 col-sm-offset-4">
             <form onSubmit={this.handleSubmit}>
-            <h4>Find a football competition</h4>
-            <br/><br/>
-            <input type="text" value={this.state.id} onChange={this.handleChange}/>
-            <br/><br/>
-            <input type="submit" value="Find Competition"/>
+            <div className="form-group">
+            <br/>
+            <label htmlFor="number">Find a football competition</label>
+            <input type="text" value={this.state.id} className="form-control" placeholder="Enter a number" onChange={this.handleChange}/>
+            </div>
+            <button type="submit" className="btn btn-primary">Submit</button>
             </form>
+            </div>
           ) : (
             <div>
-              <table>
+              <table className="table">
                 <thead>
                   <tr><th>ID</th><th>Caption</th><th>League</th><th>Year</th><th>NumberOfTeams</th><th>NumberOfGames</th><th>lastUpdated</th><td>Teams</td></tr>
                 </thead>
                 <tbody>
-                <tr><td>{c.id}</td><td>{c.caption}</td><td>{c.league}</td><td>{c.year}</td><td>{c.numberOfTeams}</td><td>{c.numberOfGames}</td><td>{c.lastUpdated}</td><td><NavLink exact to={`/teams/${c.id}`}>Show Teams</NavLink></td></tr>
+                <tr className="info"><td>{c.id}</td><td>{c.caption}</td><td>{c.league}</td><td>{c.year}</td><td>{c.numberOfTeams}</td><td>{c.numberOfGames}</td><td>{c.lastUpdated}</td><td><NavLink exact to={`/teams/${c.id}`}>Show Teams</NavLink></td></tr>
                 </tbody>
               </table>
                 <Route path="/teams/:id" render={({match}) => <Teams match={match.params.id} />}/>

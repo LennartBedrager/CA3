@@ -14,12 +14,23 @@ export default class LogIn extends Component {
     }
     render() {
       return (
-        <div>
-          <h2>Login</h2>
+        <div className="jumbotron vertical-center">
+        <div className="container text-center">
+          <h2>Login Page</h2>
+        </div>
+        <br/>
           <form onSubmit={this.login} onChange={this.onChange} >
-            <input placeholder="User Name" id="username" />
-            <input placeholder="Password" id="password" />
-            <button>Login</button>
+          <div className="col-sm-4 col-sm-offset-4">
+          <div className="form-group">
+          <label htmlFor="username">Username</label>
+          <input type="text" className="form-control" placeholder="Enter username" id="username" />
+          </div>
+          <div className="form-group">
+          <label htmlFor="password">Password</label>
+          <input type="password" className="form-control" placeholder="Enter password" id="password" />
+          </div>
+          <button type="submit" className="btn btn-primary">Login</button>
+          </div>
           </form>
         </div>
       )

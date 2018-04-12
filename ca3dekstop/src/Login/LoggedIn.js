@@ -29,8 +29,10 @@ export default class LoggedIn extends Component {
     render() {
       return (
         <div>
+        <div className="container text-center">
         <h2 >Data Received from server</h2>
         <h3>{this.state.dataFromServer}</h3>
+        </div>
         <Route path="/" render={() => <Competitions />}/>
         </div>
       )
