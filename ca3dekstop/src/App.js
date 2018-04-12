@@ -4,8 +4,8 @@ import LogIn from './Login/LogIn';
 import LoggedIn from './Login/LoggedIn';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = { loggedIn: false }
   }
   

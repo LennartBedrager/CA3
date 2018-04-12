@@ -20,9 +20,14 @@ class CompetitionFacade {
     }
   }
     
-    fetchCompetition = (id) =>{
+    fetchCompetition = (id) => {
         return fetch(URL + id, this.makeGetFetchOptions("GET"))
         .then(handleHttpErrors)
+    }
+
+    fetchTeamsFromCompetition = (id) => {
+      return fetch(URL + id + "/teams", this.makeGetFetchOptions("GET"))
+      .then(handleHttpErrors)
     }
 }
 const competitionfacade = new CompetitionFacade();

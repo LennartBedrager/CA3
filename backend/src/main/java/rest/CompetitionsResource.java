@@ -47,7 +47,7 @@ public class CompetitionsResource {
      *
      * @return an instance of java.lang.String
      */
-    
+
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -57,6 +57,7 @@ public class CompetitionsResource {
         // Connect to the URL using java's native library
         URL url = new URL(sURL);
         HttpURLConnection request = (HttpURLConnection) url.openConnection();
+        request.addRequestProperty("X-Auth-Token", "ffa92b7408d542fdb9b5d4645458c723");
         request.connect();
 
         // Convert to a JSON object to print data
@@ -75,6 +76,7 @@ public class CompetitionsResource {
         // Connect to the URL using java's native library
         URL url = new URL(sURL);
         HttpURLConnection request = (HttpURLConnection) url.openConnection();
+        request.addRequestProperty("X-Auth-Token", "ffa92b7408d542fdb9b5d4645458c723");
         request.connect();
 
         // Convert to a JSON object to print data
@@ -93,6 +95,7 @@ public class CompetitionsResource {
         // Connect to the URL using java's native library
         URL url = new URL(sURL);
         HttpURLConnection request = (HttpURLConnection) url.openConnection();
+        request.addRequestProperty("X-Auth-Token", "ffa92b7408d542fdb9b5d4645458c723");
         request.connect();
 
         // Convert to a JSON object to print data
@@ -101,7 +104,7 @@ public class CompetitionsResource {
         JsonObject rootobj = root.getAsJsonObject(); //May be an array, may be an object. //just grab the zipcode
         return rootobj.toString();
     }
-    
+
     @GET
     @Path("/{id}/leagueTable")
     @Produces(MediaType.APPLICATION_JSON)
@@ -111,6 +114,7 @@ public class CompetitionsResource {
         // Connect to the URL using java's native library
         URL url = new URL(sURL);
         HttpURLConnection request = (HttpURLConnection) url.openConnection();
+        request.addRequestProperty("X-Auth-Token", "ffa92b7408d542fdb9b5d4645458c723");
         request.connect();
 
         // Convert to a JSON object to print data
@@ -119,5 +123,5 @@ public class CompetitionsResource {
         JsonObject rootobj = root.getAsJsonObject(); //May be an array, may be an object. //just grab the zipcode
         return rootobj.toString();
     }
-    
+
 }
