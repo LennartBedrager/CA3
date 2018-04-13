@@ -45,7 +45,7 @@ export default class Competitions extends Component {
       render () {
         let c = this.state.competition
         return (
-          <div className="container">
+          <div className="container text-center">
           {!this.state.isFalse ?  (
             <div className="col-sm-4 col-sm-offset-4">
             <form onSubmit={this.handleSubmit}>

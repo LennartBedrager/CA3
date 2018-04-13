@@ -1,8 +1,8 @@
 {
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 13448,
-  "expoServerNgrokUrl": "https://kp-8zw.hawkdon.ca3mobile.exp.direct",
-  "packagerNgrokUrl": "https://packager.kp-8zw.hawkdon.ca3mobile.exp.direct",
-  "ngrokPid": 11080
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }

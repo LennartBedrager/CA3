@@ -21,10 +21,10 @@ const styles = StyleSheet.create({
 
 class LogIn extends Component {
   
-  handleSubmit = async () => {
+  handleSubmit = () => {
     var value = this.refs.form.getValue();
     if (value) {
-      await this.props.login(value.username, value.password);
+      this.props.login(value.username, value.password);
     }
   }
 
@@ -72,18 +72,21 @@ export default class App extends Component {
     this.setState({ loggedIn: false });
   }
 
-  login = async (user, pass) => {
-    await facade.login(user,pass)
+  login = (user, pass) => {
+    facade.login(user,pass)
+    this.setState({
+      loggedIn: true
+    })
   }
 
   render() {
     return (
       <View>
         {!this.state.loggedIn ? (<LogIn login={this.login}/>) :
-          ( <div>
+          ( <View>
               <LoggedIn />
               <Button title="Logout" onPress={this.logout} />
-            </div>)}
+            </View>)}
       </View>
     );
   }
