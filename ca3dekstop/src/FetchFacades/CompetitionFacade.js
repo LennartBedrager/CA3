@@ -1,5 +1,5 @@
 import LoginFacade from './LoginFacade';
-const URL = "http://localhost:8084/jwtbackend/api/competitions/";
+const URL = "https://hawkdon.dk/CA3/api/competitions/";
 
 function handleHttpErrors(res) {
   if (!res.ok) {
