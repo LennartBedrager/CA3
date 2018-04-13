@@ -111,7 +111,7 @@ public class CompetitionsResource {
 
     @GET
     @Path("/{id}/leagueTable")
-    @RolesAllowed({"user", "admin"})
+    @RolesAllowed("admin")
     @Produces(MediaType.APPLICATION_JSON)
     public String getAllLeagueTables(@PathParam("id") String id) throws IOException, MalformedURLException {
         String sURL = "http://api.football-data.org/v1/competitions/" + id + "/leagueTable"; //just a string
