@@ -28,6 +28,10 @@ class App extends Component {
       <div className="jumbotron vertical-center">
       <div className="container text-center">
       <h1>Welcome to our Website!</h1>
+      <h4>Rollefordelinger:</h4>
+      <h5>Backend: Oliver</h5>
+      <h5>React: Oliver, Kasper</h5>
+      <h5>React-Native: Oliver</h5>
       </div>
         {!this.state.loggedIn ? (<LogIn login={this.login}/>) :
           ( <div>
