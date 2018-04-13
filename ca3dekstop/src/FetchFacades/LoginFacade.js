@@ -54,7 +54,7 @@ class LoginFacade {
         let jwtData = jwt.split('.')[1];
         let decodedjwtJsonData = window.atob(jwtData);
         let decodedjwtData = JSON.parse(decodedjwtJsonData)
-        if(decodedjwtData.roles === 'admin' || decodedjwtData.roles === 'admin,user') {
+        if(decodedjwtData.roles === 'admin') {
             return fetch(URL+"/api/info/admin",options).then(handleHttpErrors);
         } else if (decodedjwtData.roles === 'user'){
             return fetch(URL+"/api/info/user",options).then(handleHttpErrors);

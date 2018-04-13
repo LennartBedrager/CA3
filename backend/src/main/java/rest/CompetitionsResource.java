@@ -15,6 +15,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -50,6 +51,7 @@ public class CompetitionsResource {
 
     @GET
     @Path("/{id}")
+    @RolesAllowed({"user", "admin"})
     @Produces(MediaType.APPLICATION_JSON)
     public String getCompetition(@PathParam("id") String id) throws IOException, MalformedURLException {
         String sURL = "http://api.football-data.org/v1/competitions/" + id; //just a string
@@ -69,6 +71,7 @@ public class CompetitionsResource {
 
     @GET
     @Path("/{id}/teams")
+    @RolesAllowed({"user", "admin"})
     @Produces(MediaType.APPLICATION_JSON)
     public String getAllTeamsFromCompetition(@PathParam("id") String id) throws IOException, MalformedURLException {
         String sURL = "http://api.football-data.org/v1/competitions/" + id + "/teams"; //just a string
@@ -88,6 +91,7 @@ public class CompetitionsResource {
 
     @GET
     @Path("/{id}/fixtures")
+    @RolesAllowed({"user", "admin"})
     @Produces(MediaType.APPLICATION_JSON)
     public String getAllFixtures(@PathParam("id") String id) throws IOException, MalformedURLException {
         String sURL = "http://api.football-data.org/v1/competitions/" + id + "/fixtures"; //just a string
@@ -107,6 +111,7 @@ public class CompetitionsResource {
 
     @GET
     @Path("/{id}/leagueTable")
+    @RolesAllowed({"user", "admin"})
     @Produces(MediaType.APPLICATION_JSON)
     public String getAllLeagueTables(@PathParam("id") String id) throws IOException, MalformedURLException {
         String sURL = "http://api.football-data.org/v1/competitions/" + id + "/leagueTable"; //just a string

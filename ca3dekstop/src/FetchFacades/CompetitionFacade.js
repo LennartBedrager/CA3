@@ -1,3 +1,4 @@
+import LoginFacade from './LoginFacade';
 const URL = "http://localhost:8084/jwtbackend/api/competitions/";
 
 function handleHttpErrors(res) {
@@ -9,10 +10,13 @@ function handleHttpErrors(res) {
 
 class CompetitionFacade {
 
-  makeGetFetchOptions = (type) => {
+  makeFetchOptions = (type) => {
     let headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
+    }
+    if(LoginFacade.loggedIn()){
+      headers["x-access-token"] = LoginFacade.getToken();
     }
     return {
       method: type,
@@ -21,22 +25,22 @@ class CompetitionFacade {
   }
     
     fetchCompetition = (id) => {
-        return fetch(URL + id, this.makeGetFetchOptions("GET"))
+        return fetch(URL + id, this.makeFetchOptions("GET", true))
         .then(handleHttpErrors)
     }
 
     fetchTeamsFromCompetition = (id) => {
-      return fetch(URL + id + "/teams", this.makeGetFetchOptions("GET"))
+      return fetch(URL + id + "/teams", this.makeFetchOptions("GET", true))
       .then(handleHttpErrors)
     }
 
     fetchFixturesFromCompetition = (id) => {
-      return fetch(URL + id + "/fixtures", this.makeGetFetchOptions("GET"))
+      return fetch(URL + id + "/fixtures", this.makeFetchOptions("GET", true))
       .then(handleHttpErrors)
     }
 
     fetchLeagueTablesFromCompetition = (id) => {
-      return fetch(URL + id + "/leagueTable", this.makeGetFetchOptions("GET"))
+      return fetch(URL + id + "/leagueTable", this.makeFetchOptions("GET", true))
       .then(handleHttpErrors)
     }
 }
