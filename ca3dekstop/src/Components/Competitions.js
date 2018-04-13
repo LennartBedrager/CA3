@@ -45,8 +45,9 @@ export default class Competitions extends Component {
       render () {
         let c = this.state.competition
         return (
-          <div className="container text-center">
+          <div className="container">
           {!this.state.isFalse ?  (
+            <div className="container text-center">
             <div className="col-sm-4 col-sm-offset-4">
             <form onSubmit={this.handleSubmit}>
             <div className="form-group">
@@ -56,6 +57,7 @@ export default class Competitions extends Component {
             </div>
             <button type="submit" className="btn btn-primary">Submit</button>
             </form>
+            </div>
             </div>
           ) : (
             <div>
