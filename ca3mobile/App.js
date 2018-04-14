@@ -1,35 +1,36 @@
-import React, { Component } from 'react';
-import { View } from 'react-native';
-import facade from "./LoginFacade";
-import LoggedIn from './Login/LoggedIn';
-import LogIn from './Login/LogIn';
+import React from 'react';
+import { StyleSheet, Text, View, Button } from 'react-native';
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { loggedIn: false }
+export default class App extends React.Component {
+  constructor(){
+    super();
+    this.state = {
+      joke : ""
+    }
   }
 
-  logout = async () => {
-    await facade.logout();
-    this.setState({ loggedIn: false });
-  }
-
-  login = async (user, pass) => {
-    await facade.login(user,pass)
-    this.setState({
-      loggedIn: true
-    })
+  getRandomJoke = () => {
+    const data = fetch("https://hawkdon.dk/CA3/api/chucknorris").then(res => res.json()).then(res => this.setState({
+      joke: res.value.joke
+    }))
   }
 
   render() {
     return (
-      <View>
-        {!this.state.loggedIn ? (<LogIn login={this.login}/>) :
-          ( <View>
-              <LoggedIn logout={this.logout}/>
-            </View>)}
+      <View style={styles.container}>
+      <Text style={{fontSize: 20}}>Press on the button to get a ChuckNorris joke</Text>
+      <Button onPress={this.getRandomJoke} title="Press me!"/>
+      <Text style={{fontSize: 20}}>{this.state.joke}</Text>
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
