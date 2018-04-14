@@ -1,6 +1,6 @@
 import { AsyncStorage } from 'react-native';
 
-const URL = "http://1e84b085.ngrok.io/jwtbackend";
+const URL = "https://hawkdon.dk/CA3";
 
 function handleHttpErrors(res) {
   if (!res.ok) {
@@ -11,13 +11,13 @@ function handleHttpErrors(res) {
 
 class LoginFacade {
 
-  makeFetchOptions = (type, b) => {
+  makeFetchOptions = async (type, b) => {
     let headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     }
-    if(this.loggedIn()){
-      headers["x-access-token"] = this.getToken();
+    if(await this.loggedIn()){
+      headers["x-access-token"] = await this.getToken();
     }
     return {
       method: type,
@@ -26,41 +26,40 @@ class LoginFacade {
     }
   }
 
-    setToken = (token) => {
-      AsyncStorage.setItem('jwtToken', token)
+    setToken = async (token) => {
+      await AsyncStorage.setItem('jwtToken', token)
     }
 
-    getToken = () => {
-        return AsyncStorage.getItem('jwtToken')
+    getToken = async () => {
+        return await AsyncStorage.getItem('jwtToken')
     }
 
-    loggedIn = () => {
-        const loggedIn = this.getToken() != null;
+    loggedIn = async () => {
+        const loggedIn = await this.getToken() != null;
         return loggedIn;
     }
 
-    logout = () => {
-      AsyncStorage.removeItem("jwtToken");
+    logout = async () => {
+      await AsyncStorage.removeItem("jwtToken");
     }
 
-    login = (user, pass) => {
-      const options = this.makeFetchOptions("POST",{ username: user, password: pass });
-      return fetch(URL+"/api/login",options,true)
-      .then(handleHttpErrors)
-      .then(res=>{this.setToken(res.token)})
+    login = async (user, pass) => {
+      const options = await this.makeFetchOptions("POST",{ username: user, password: pass });
+      const fetchData = await fetch(URL+"/api/login",options,true).then(handleHttpErrors).then(res => {await this.setToken(res.token)});
     }
     
-    fetchData = () =>{
-        const options = this.makeFetchOptions("GET");
-//        let jwt = this.getToken();
-//        let jwtData = jwt.split('.')[1];
-//        let decodedjwtJsonData = window.atob(jwtData);
-//        let decodedjwtData = JSON.parse(decodedjwtJsonData)
-//        if(decodedjwtData.roles === 'admin' || decodedjwtData.roles === 'admin,user') {
-//            return fetch(URL+"/api/info/admin",options).then(handleHttpErrors);
-//        } else if (decodedjwtData.roles === 'user'){
-            return fetch(URL+"/api/info/user",options).then(handleHttpErrors);
-//        }
+    fetchData = async () =>{
+        const options = await this.makeFetchOptions("GET");
+        /*let jwt = await this.getToken();
+        console.log(jwt)
+        let jwtData = await jwt.split('.')[1];
+        let decodedjwtJsonData = await window.atob(jwtData);
+        let decodedjwtData = await JSON.parse(decodedjwtJsonData)
+        if(decodedjwtData.roles === 'admin') {
+            return await fetch(URL+"/api/info/admin",options).then(handleHttpErrors);
+        } else if (decodedjwtData.roles === 'user'){ */
+            return await fetch(URL+"/api/info/user",options).then(handleHttpErrors);
+        //}
       }
 }
 const facade = new LoginFacade();
